@@ -15,6 +15,8 @@ while True:
                 admin_object.add_movie()
             if user_input == 2:
                 admin_object.EditMovie()
+            if user_input == 3:
+                admin_object.deleteMovie()
             if user_input == 4:
                 break
 

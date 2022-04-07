@@ -46,25 +46,36 @@ class Admin(ExcelUtils):
             print()
 
     def add_movie(self):
-        for i in range(1, ExcelUtils.Total_main_database_row):
-            print("Please fill the below Requirements")
-            local_dict = {"Title": "A", "Genre": "B", "Length": "C", "Cast": "D", "Director": "E",
-                          "Admin_rating": "F", "Timing": "G", "No_of Shows": "H", "First Show": "I",
-                          "Interval Time": "J", "Gap Between Shows": "K", "Capacity": "L"}
-            for j in local_dict:
-                edit = str(input(f'{j}:'))
-                c = ExcelUtils.database[f'{local_dict[j]}{ExcelUtils.Total_main_database_row + 1}']
-                c.value = edit
+        try:
+            for i in range(1, ExcelUtils.Total_main_database_row):
+                print("Please fill the below Requirements")
+                local_dict = {"Title": "A", "Genre": "B", "Length": "C", "Cast": "D", "Director": "E",
+                              "Admin_rating": "F", "Timing": "G", "No_of Shows": "H", "First Show": "I",
+                              "Interval Time": "J", "Gap Between Shows": "K", "Capacity": "L"}
+                for j in local_dict:
+                    edit = str(input(f'{j}:'))
+                    c = ExcelUtils.database[f'{local_dict[j]}{ExcelUtils.Total_main_database_row + 1}']
+                    c.value = edit
 
-        ExcelUtils.workbook.save(ExcelUtils.url)
-        print("Movie added Successfully")
+            ExcelUtils.workbook.save(ExcelUtils.url)
+            print("Movie added Successfully")
+        except Exception:
+            print("Something Went Wrong")
 
     def deleteMovie(self):
-        movie_name = str(input("Enter the MOvie you want to delete"))
-        ExcelUtils.database.delete_rows(3, 1)
-        ExcelUtils.workbook.save(ExcelUtils.url)
+        try:
+            movie_name = str(input("Enter the Movie you want to delete"))
+            index = 0
+            for i in range(1, ExcelUtils.Total_main_database_row):
+                if ExcelUtils.database.cell(i, 1).value == movie_name:
+                    index = i
+            ExcelUtils.database.delete_rows(index, 1)
+            ExcelUtils.workbook.save(ExcelUtils.url)
+            print(f'{movie_name} is deleted successfully')
+        except Exception:
+            print("Something Went Wrong")
 
-        print("hello")
+
 
 
 os = Admin()
