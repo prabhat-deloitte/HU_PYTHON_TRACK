@@ -22,7 +22,3 @@ class ExcelUtils:
         ExcelUtils.Total_main_database_row = ExcelUtils.database.max_row
         ExcelUtils.Total_main_database_Column = ExcelUtils.database.max_column
 
-
-
-
-

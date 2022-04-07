@@ -39,13 +39,33 @@ class Admin(ExcelUtils):
                     editing_cell = ExcelUtils.database[local_dict[editable]+f'{i}']
                     editing_cell.value = edit
                     ExcelUtils.workbook.save(ExcelUtils.url)
+                    print(f'{editable} is Edited Successfully')
         except WrongColumName:
             print("Please Enter Correct Column name")
         except Exception:
-            print("something went Wrong")
+            print()
 
     def add_movie(self):
+        for i in range(1, ExcelUtils.Total_main_database_row):
+            print("Please fill the below Requirements")
+            local_dict = {"Title": "A", "Genre": "B", "Length": "C", "Cast": "D", "Director": "E",
+                          "Admin_rating": "F", "Timing": "G", "No_of Shows": "H", "First Show": "I",
+                          "Interval Time": "J", "Gap Between Shows": "K", "Capacity": "L"}
+            for j in local_dict:
+                edit = str(input(f'{j}:'))
+                c = ExcelUtils.database[f'{local_dict[j]}{ExcelUtils.Total_main_database_row + 1}']
+                c.value = edit
+
+        ExcelUtils.workbook.save(ExcelUtils.url)
+        print("Movie added Successfully")
+
+    def deleteMovie(self):
+        movie_name = str(input("Enter the MOvie you want to delete"))
+        ExcelUtils.database.delete_rows(3, 1)
+        ExcelUtils.workbook.save(ExcelUtils.url)
+
         print("hello")
 
 
-
+os = Admin()
+os.deleteMovie()
