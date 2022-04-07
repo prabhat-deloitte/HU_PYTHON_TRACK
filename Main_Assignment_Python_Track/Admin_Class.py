@@ -23,7 +23,7 @@ class Admin(ExcelUtils):
                     return "wrong_Password"
         return "Wrong Admin_Username"
 
-    def EditMovie(self):
+    def editmovie(self):
         try:
             movie_name = str(input("Enter Movie name"))
             for i in range(1, ExcelUtils.Total_main_database_row+1):
@@ -54,8 +54,8 @@ class Admin(ExcelUtils):
                               "Interval Time": "J", "Gap Between Shows": "K", "Capacity": "L"}
                 for j in local_dict:
                     edit = str(input(f'{j}:'))
-                    c = ExcelUtils.database[f'{local_dict[j]}{ExcelUtils.Total_main_database_row + 1}']
-                    c.value = edit
+                    cell = ExcelUtils.database[f'{local_dict[j]}{ExcelUtils.Total_main_database_row + 1}']
+                    cell.value = edit
 
             ExcelUtils.workbook.save(ExcelUtils.url)
             print("Movie added Successfully")
@@ -75,8 +75,23 @@ class Admin(ExcelUtils):
         except Exception:
             print("Something Went Wrong")
 
+    def calculate_timing(self):
+        local_dict = {"length":"C", "No_of_show":"H", "first_show":"I", "Interval time":"J", "Gap":"K"}
+        retained_dict={}
+        for i in local_dict.keys():
+             values = ExcelUtils.database[f'{local_dict[i]}{ExcelUtils.Total_main_database_row}'].value
+             if values not in retained_dict:
+                 retained_dict[i] = values
+        timing_list = []
+        total_movie_length = float(retained_dict["first_show"]) + float(retained_dict["length"]) + float(
+            retained_dict["Interval time"])
+        # for j in range(0, int(retained_dict["No_of_show"])):
+        #     start_time =
 
 
 
-os = Admin()
-os.deleteMovie()
+
+
+
+o = Admin()
+o.calculate_timing()

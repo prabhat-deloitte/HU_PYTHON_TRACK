@@ -8,6 +8,9 @@ class ExcelUtils:
     sheet = None
     Total_row = None
     url = None
+    Total_user_row = None
+    user_sheet = None
+    Total_main_database_Column = None
 
     def __init__(self):
         ExcelUtils.url = "C:\\Users\\praparihar\\Desktop\\New Microsoft Excel Worksheet.xlsx"
