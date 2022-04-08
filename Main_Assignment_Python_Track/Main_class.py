@@ -18,13 +18,16 @@ while True:
                                      "4.Logout\n"))
             if admin_input == 1:
                 admin_object.add_movie()
+                admin_object.calculate_timing()
             if admin_input == 2:
                 admin_object.editmovie()
             if admin_input == 3:
                 admin_object.deleteMovie()
             if admin_input == 4:
+                admin_object.calculate_timing()
                 break
             else:
+
                 break
     if user_input == 2:
         # que = str(input("New _user ? Type yes to register"))
@@ -57,9 +60,8 @@ while True:
                 if user_input == 4:
                     break
 
-
-
-
+    if user_input == 3:
+        exit()
 
 
 
