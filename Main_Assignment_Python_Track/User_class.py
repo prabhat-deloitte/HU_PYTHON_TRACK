@@ -19,6 +19,7 @@ class User(ExcelUtils):
 
     def book_ticket(self, movie_index):
         try:
+            ExcelUtils()
             print("Timing")
             timing = list(ExcelUtils.database[f'G{movie_index+1}'].value.split(","))
             for i in range(0, len(timing)):

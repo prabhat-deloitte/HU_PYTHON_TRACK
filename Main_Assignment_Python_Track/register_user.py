@@ -3,8 +3,7 @@ from Main_Assignment_Python_Track.User_class import User
 
 
 class UserExists(Exception):
-    def __init__(self):
-        print("user_already")
+    pass
 
 
 class Registration(User):
@@ -14,6 +13,7 @@ class Registration(User):
                 super().__init__()
                 ExcelUtils()
                 new_user = str(input("Enter New Username"))
+                temp_username = new_user
                 local_dict = {"Username": "A", "Password": "B", "Email": "C", "Phone": "D", "Age": "E"}
                 for i in range(1, ExcelUtils.Total_user_row):
                     if ExcelUtils.user_sheet.cell(i,1).value == new_user:
@@ -25,9 +25,12 @@ class Registration(User):
                     cell.value = new_user
 
                 ExcelUtils.workbook.save(ExcelUtils.url)
-                print(f'{new_user} added Successful')
+                ExcelUtils.workbook.close()
+                print(f'{temp_username} added Successful')
             except UserExists:
                 print("User already exists")
+            except Exception:
+                print("Something went Wrong")
 
 
 

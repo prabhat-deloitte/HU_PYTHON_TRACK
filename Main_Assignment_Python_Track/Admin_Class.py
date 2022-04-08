@@ -1,6 +1,6 @@
 from Main_Assignment_Python_Track.ExcelUtility import ExcelUtils
 import datetime
-import time
+
 
 
 class WrongColumName(Exception):
@@ -30,9 +30,9 @@ class Admin(ExcelUtils):
             movie_name = str(input("Enter Movie name"))
             for i in range(1, ExcelUtils.Total_main_database_row+1):
                 if ExcelUtils.database.cell(i, 1).value == movie_name:
-                    local_dict = {"Title": "A", "Genre": "B", "Length": "C", "Cast": "D", "Director": "E",
+                    local_dict = {"Title": "A", "Genre": "B", "Length in hours": "C", "Cast": "D", "Director": "E",
                                   "Admin_rating": "F", "No_of Shows": "H", "First Show": "I",
-                                  "Interval Time": "J", "Gap Between Shows": "K", "Capacity": "L"}
+                                  "Interval Time in minutes": "J", "Gap Between Shows in minutes": "K", "Capacity": "L"}
                     print(list(local_dict.keys()))
                     editable = str(input("enter what you want to edit "))
                     if editable not in local_dict:
